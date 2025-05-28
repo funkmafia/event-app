@@ -6,6 +6,12 @@ import { ApiClient } from '../../apiClient/apiClient';
 export default function CreateAd() {
   const [formData, setFormData] = useState({
     title: '',
+    artist: '',
+    genre: '',
+    age: '',
+    location: '',
+    date: '',
+    time: '',
     description: '',
     price: '',
   });
@@ -23,6 +29,12 @@ export default function CreateAd() {
   const validateForm = () => {
     const newErrors = {};
     if (!formData.title.trim()) newErrors.title = 'Title is required';
+    if (!formData.artist.trim()) newErrors.artist = 'Artist is required';
+    if (!formData.genre.trim()) newErrors.genre = "Genre is required";
+    if (!formData.age.trim()) newErrors.age = "Age is required";
+    if (!formData.location.trim()) newErrors.location = 'Location is required';
+    if (!formData.date.trim()) newErrors.date = 'Date is required';
+    if (!formData.time.trim()) newErrors.time = 'Time is required';
     if (!formData.description.trim()) newErrors.description = 'Description is required';
     if (!formData.price.trim()) newErrors.price = 'Price is required';
     else if (isNaN(Number(formData.price)) || Number(formData.price) < 0) {
@@ -39,9 +51,9 @@ export default function CreateAd() {
       setLoading(true);
       try {
         const apiClient = new ApiClient();
-        const response = await apiClient.addAd(formData.title, formData.description, formData.price);
+        const response = await apiClient.addAd(formData.title, formData.artist, formData.genre, formData.age, formData.location, formData.date, formData.time, formData.description, Number(formData.price));
         setSuccess(true);
-        setFormData({ title: '', description: '', price: '' });
+        setFormData({ title: '', artist: '', genre: '', age: '', location: '', date: '', time: '', description: '', price: '' });
       } catch (err) {
         console.error('Error creating ad:', err.response || err); // Debug log
         setErrors({ 
@@ -77,6 +89,84 @@ export default function CreateAd() {
             placeholder="Enter ad title" 
           />
           {errors.title && (<p className="mt-1 text-sm text-red-500">{errors.title}</p>)}
+        </div>
+        <div>
+          <label htmlFor="artist" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Artist</label>
+          <input 
+            type="text" 
+            id="artist" 
+            name="artist" 
+            value={formData.artist} 
+            onChange={handleChange} 
+            className={`w-full px-4 py-2 rounded-lg border ${errors.artist ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'} bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent`} 
+            placeholder="Enter Artist name" 
+          />
+          {errors.artist && (<p className="mt-1 text-sm text-red-500">{errors.artist}</p>)}
+        </div>
+        <div>
+          <label htmlFor="genre" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Genre</label>
+          <input 
+            type="text" 
+            id="genre" 
+            name="genre" 
+            value={formData.genre} 
+            onChange={handleChange} 
+            className={`w-full px-4 py-2 rounded-lg border ${errors.genre ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'} bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent`} 
+            placeholder="Enter Event Genre" 
+          />
+          {errors.genre && (<p className="mt-1 text-sm text-red-500">{errors.genre}</p>)}
+        </div>
+        <div>
+          <label htmlFor="age" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Age</label>
+          <input 
+            type="text" 
+            id="age" 
+            name="age" 
+            value={formData.age} 
+            onChange={handleChange} 
+            className={`w-full px-4 py-2 rounded-lg border ${errors.age ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'} bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent`} 
+            placeholder="Enter Age Recommendation" 
+          />
+          {errors.age && (<p className="mt-1 text-sm text-red-500">{errors.age}</p>)}
+        </div>
+        <div>
+          <label htmlFor="location" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Location</label>
+          <input 
+            type="text" 
+            id="location" 
+            name="location" 
+            value={formData.location} 
+            onChange={handleChange} 
+            className={`w-full px-4 py-2 rounded-lg border ${errors.location ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'} bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent`} 
+            placeholder="Enter Event Location" 
+          />
+          {errors.location && (<p className="mt-1 text-sm text-red-500">{errors.location}</p>)}
+        </div>
+        <div>
+          <label htmlFor="date" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Date</label>
+          <input 
+            type="text" 
+            id="date" 
+            name="date" 
+            value={formData.date} 
+            onChange={handleChange} 
+            className={`w-full px-4 py-2 rounded-lg border ${errors.date ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'} bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent`} 
+            placeholder="Enter Event Date" 
+          />
+          {errors.date && (<p className="mt-1 text-sm text-red-500">{errors.date}</p>)}
+        </div>
+        <div>
+          <label htmlFor="time" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Time</label>
+          <input 
+            type="text" 
+            id="time" 
+            name="time" 
+            value={formData.time} 
+            onChange={handleChange} 
+            className={`w-full px-4 py-2 rounded-lg border ${errors.time ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'} bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent`} 
+            placeholder="Enter Event Time" 
+          />
+          {errors.time && (<p className="mt-1 text-sm text-red-500">{errors.time}</p>)}
         </div>
         <div>
           <label htmlFor="description" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Description</label>
