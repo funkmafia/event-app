@@ -96,7 +96,7 @@ export class ApiClient {
     }
   }
 
-  async addAd(title, artist, genre,age,location,date, time, description, price) {
+  async addAd(title, artist, genre, age, location, date, time, imageURL, description, price) {
     try {
       const numericPrice = Number(price);
       if (isNaN(numericPrice)) {
@@ -109,7 +109,8 @@ export class ApiClient {
         age,
         location,
         date,
-        time, 
+        time,
+        imageURL, 
         description, 
         price: numericPrice, 
       });

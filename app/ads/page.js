@@ -74,24 +74,27 @@ export default function AdsPage() {
                 <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
                   {ad.artist}
                 </h2>
+                {ad.imageURL && (
+                  <img src={ad.imageURL} alt={ad.title} className='h-64 w-full rounded-sm my-2'/>
+                )}
                 <p className="text-gray-600 dark:text-gray-300 mb-4 line-clamp-5">
                   {ad.description}
                 </p>
                 <div className='grid grid-cols-2'>
                   <p className="text-md text-gray-900 dark:text-white mb-2">
-                    {ad.genre}
+                   &#127926; {ad.genre}
                   </p>
                   <p className="text-md text-gray-900 dark:text-white mb-2">
-                    {ad.age}
+                   &#128286; {ad.age}
                   </p>
                   <p className="text-md text-gray-900 dark:text-white mb-2">
-                    {ad.location}
+                   &#128205; {ad.location}
                   </p>
                   <p className="text-md text-gray-900 dark:text-white mb-2">
-                    {ad.date}
+                   &#128197; {ad.date}
                   </p>
                   <p className="text-md text-gray-900 dark:text-white mb-2">
-                   &#9202; {ad.time}
+                   &#128337; {ad.time}
                   </p>
                 </div>
                 <div className="flex justify-between items-center">
@@ -110,7 +113,7 @@ export default function AdsPage() {
                     type="submit"
                     className="w-full bg-blue-600 text-white py-2 px-4 rounded-lg font-medium hover:bg-blue-700 transition-colors"
                   >
-                    Contact Seller
+                    Buy Ticket
                   </button>
                 </form>
               </div>

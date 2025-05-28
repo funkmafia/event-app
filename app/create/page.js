@@ -51,9 +51,9 @@ export default function CreateAd() {
       setLoading(true);
       try {
         const apiClient = new ApiClient();
-        const response = await apiClient.addAd(formData.title, formData.artist, formData.genre, formData.age, formData.location, formData.date, formData.time, formData.description, Number(formData.price));
+        const response = await apiClient.addAd(formData.title, formData.artist, formData.genre, formData.age, formData.location, formData.date, formData.time, formData.imageURL, formData.description, Number(formData.price));
         setSuccess(true);
-        setFormData({ title: '', artist: '', genre: '', age: '', location: '', date: '', time: '', description: '', price: '' });
+        setFormData({ title: '', artist: '', genre: '', age: '', location: '', date: '', time: '', imageURL: '', description: '', price: '' });
       } catch (err) {
         console.error('Error creating ad:', err.response || err); // Debug log
         setErrors({ 
@@ -102,6 +102,19 @@ export default function CreateAd() {
             placeholder="Enter Artist name" 
           />
           {errors.artist && (<p className="mt-1 text-sm text-red-500">{errors.artist}</p>)}
+        </div>
+        <div>
+          <label htmlFor="imageURL" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Image</label>
+          <input 
+            type="text" 
+            id="imageURL" 
+            name="imageURL" 
+            value={formData.imageURL} 
+            onChange={handleChange} 
+            className={`w-full px-4 py-2 rounded-lg border bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent`} 
+            placeholder="Enter Image URL" 
+          />
+        
         </div>
         <div>
           <label htmlFor="genre" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Genre</label>
