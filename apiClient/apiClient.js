@@ -96,16 +96,22 @@ export class ApiClient {
     }
   }
 
-  async addAd(title, description, price) {
+  async addAd(title, artist, genre,age,location,date, time, description, price) {
     try {
       const numericPrice = Number(price);
       if (isNaN(numericPrice)) {
         throw new Error('Price must be a valid number');
       }
       return this.apiCall("post", url + "ads", { 
-        title, 
+        title,
+        artist,
+        genre,
+        age,
+        location,
+        date,
+        time, 
         description, 
-        price: numericPrice 
+        price: numericPrice, 
       });
     } catch (error) {
       console.error('addAd error:', error.response || error); // Debug log

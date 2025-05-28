@@ -71,9 +71,29 @@ export default function AdsPage() {
                 <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
                   {ad.title}
                 </h2>
-                <p className="text-gray-600 dark:text-gray-300 mb-4 line-clamp-3">
+                <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+                  {ad.artist}
+                </h2>
+                <p className="text-gray-600 dark:text-gray-300 mb-4 line-clamp-5">
                   {ad.description}
                 </p>
+                <div className='grid grid-cols-2'>
+                  <p className="text-md text-gray-900 dark:text-white mb-2">
+                    {ad.genre}
+                  </p>
+                  <p className="text-md text-gray-900 dark:text-white mb-2">
+                    {ad.age}
+                  </p>
+                  <p className="text-md text-gray-900 dark:text-white mb-2">
+                    {ad.location}
+                  </p>
+                  <p className="text-md text-gray-900 dark:text-white mb-2">
+                    {ad.date}
+                  </p>
+                  <p className="text-md text-gray-900 dark:text-white mb-2">
+                   &#9202; {ad.time}
+                  </p>
+                </div>
                 <div className="flex justify-between items-center">
                   <span className="text-2xl font-bold text-blue-600 dark:text-blue-400">
                     ${ad.price}
