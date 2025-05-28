@@ -127,6 +127,21 @@ export class ApiClient {
   async updateAd(id, title, description, price) {
     return this.apiCall("put", `${url}ads/${id}`, { title, description, price });
   }
+   
+  async register(name, email, password){
+    try {
+      const response = await this.apiCall("post", url + "auth/register", { name, email, password });
+      if (response.data && response.data.token) {
+        this.setToken(response.data.token);
+        return response;
+      } else {
+        throw new Error('No token received from server');
+      }
+    } catch (error) {
+      throw error;
+    
+    }
+  }
 
   async login(email, password) {
     try {
