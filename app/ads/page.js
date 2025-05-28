@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { use, useEffect, useState } from 'react';
 import { ApiClient } from '../../apiClient/apiClient';
 
 export default function AdsPage() {
@@ -27,6 +27,7 @@ export default function AdsPage() {
 
     fetchAds();
   }, []);
+  
 
   if (loading) {
     return (
