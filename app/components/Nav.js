@@ -17,6 +17,7 @@ const Nav = () => {
         <Link href="login" className="hover:underline">
           Login
         </Link>
+      
       </div>
     </nav>
   );

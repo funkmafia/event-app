@@ -39,6 +39,7 @@ export class ApiClient {
     );
   }
 
+
   getToken() {
     if (typeof window !== 'undefined') {
       const token = localStorage.getItem('authToken');
@@ -76,7 +77,7 @@ export class ApiClient {
       });
       return response;
     } catch (error) {
-      console.error('API call error:', error.response || error); // Debug log
+      console.error('API call error:', error.response || error); 
       if (error.response && error.response.status === 401) {
         this.removeToken();
         if (typeof window !== 'undefined') {
@@ -158,10 +159,19 @@ export class ApiClient {
     }
   }
 
-  logout() {
+  async logout() {
+    const token = this.getToken();
+    try {
+      if (token) {
+        await this.apiCall('post', url + "auth/logout", {token});
+      }
+    }catch (error) {
+      console.error('Logout error:', error?.response?.data || error.message);
+    } finally {
     this.removeToken();
     if (typeof window !== 'undefined') {
       window.location.href = '/user';
+    }
     }
   }
 }

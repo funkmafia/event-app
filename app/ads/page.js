@@ -27,8 +27,11 @@ export default function AdsPage() {
 
     fetchAds();
   }, []);
-  
-
+    const handleLogout = async () => {
+    const apiClient = new ApiClient();
+    await apiClient.logout();
+  }
+   
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -55,6 +58,7 @@ export default function AdsPage() {
 
   return (
     <div className="max-w-7xl mx-auto p-6">
+      <button onClick={handleLogout} className="text-purple-400 rounded-md hover:bg-red-300 text-white">Logout</button>
       <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-8">Browse Advertisements</h1>
       
       {ads.length === 0 ? (
