@@ -33,7 +33,7 @@ export default function UserLoginPage() {
         setError('Registered successful but no token received');
       }
     } catch (err) {
-      console.error('Register error:', err.response || err); // Debug log
+      console.error('Register error:', err.response || err); 
       setError(err.response?.data?.message || 'Invalid credentials or server error.');
     } finally {
       setLoading(false);
@@ -59,7 +59,6 @@ export default function UserLoginPage() {
             onChange={handleChange}
             className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             placeholder="Enter Your Name"
-           // autoComplete="email"
             required
           />
         </div>
