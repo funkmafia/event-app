@@ -11,6 +11,9 @@ const Nav = () => {
         <Link href="/" className="hover:underline">
           Home
         </Link>
+        <Link href="/create" className="hover:underline">
+          Create
+        </Link>
         <Link href="/register" className="hover:underline">
           Register
         </Link>
