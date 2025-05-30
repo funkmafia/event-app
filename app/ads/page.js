@@ -7,6 +7,19 @@ export default function AdsPage() {
   const [ads, setAds] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [editAd, setEditAd] = useState(null);
+  const [editForm, setEditForm] = useState ({
+    title: '',
+    artist: '',
+    genre: '',
+    age: '',
+    location: '',
+    date: '',
+    time: '',
+    imageURL: '',
+    description: '',
+    price: '',
+  });
 
   useEffect(() => {
     const fetchAds = async () => {
@@ -30,8 +43,20 @@ export default function AdsPage() {
     const handleLogout = async () => {
     const apiClient = new ApiClient();
     await apiClient.logout();
-  }
-   
+    }
+    const handleDelete = async (id) =>{
+      const apiClient = new ApiClient();
+      try{
+      await apiClient.removeAd(id);
+      setAds((prevAds) => prevAds.filter(ad => ad._id !== id));
+      }catch (err){
+        const message = err.response?.data?.message || "Failed to delete ad.";
+        alert(message);
+        
+      }
+    }
+  
+
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -122,10 +147,120 @@ export default function AdsPage() {
                   </button>
                 </form>
               </div>
-            </div>
+              <button onClick ={() => {
+                  setEditAd(ad);
+                  setEditForm({title: ad.title, artist: ad.artist, genre: ad.genre, age: ad.age, location: ad.location, date: ad.date, time: ad.time, description: ad.description, price: ad.price});
+                }} className='text-sm'>&#128395; Edit</button>
+                <button onClick={() => handleDelete(ad._id)}>Delete</button>
+               </div>
+
           ))}
+           {editAd && (
+                  <div className="max-w-2xl mx-auto p-6">
+                  <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-8">Edit Advertisement</h1>
+                  <div className="space-y-4">
+                  <input
+                    type="text"
+                    value={editForm.title}
+                    onChange={(e) => setEditForm({ ...editForm, title: e.target.value })}
+                    placeholder="Title"
+                    className="w-full p-2 border rounded"
+                  />
+                  <input
+                    type="text"
+                    value={editForm.artist}
+                    onChange={(e) => setEditForm({ ...editForm, artist: e.target.value })}
+                    placeholder="Enter artist name"
+                    className="w-full p-2 border rounded"
+                  />
+                  <input
+                    type="text"
+                    value={editForm.imageURL}
+                    onChange={(e) => setEditForm({ ...editForm, imageURL: e.target.value })}
+                    placeholder="Enter image URL"
+                    className="w-full p-2 border rounded"
+                  />
+                  <input
+                    type="text"
+                    value={editForm.genre}
+                    onChange={(e) => setEditForm({ ...editForm, genre: e.target.value })}
+                    placeholder="Enter event genre"
+                    className="w-full p-2 border rounded"
+                  />
+                  <input
+                    type="text"
+                    value={editForm.age}
+                    onChange={(e) => setEditForm({ ...editForm, age: e.target.value })}
+                    placeholder="Enter age recommendation"
+                    className="w-full p-2 border rounded"
+                  />
+                  <input
+                    type="text"
+                    value={editForm.location}
+                    onChange={(e) => setEditForm({ ...editForm, location: e.target.value })}
+                    placeholder="Enter event location"
+                    className="w-full p-2 border rounded"
+                  />
+                  <input
+                    type="text"
+                    value={editForm.date}
+                    onChange={(e) => setEditForm({ ...editForm, date: e.target.value })}
+                    placeholder="Enter event date"
+                    className="w-full p-2 border rounded"
+                  />
+                  <input
+                    type="text"
+                    value={editForm.time}
+                    onChange={(e) => setEditForm({ ...editForm, time: e.target.value })}
+                    placeholder="Enter event time"
+                    className="w-full p-2 border rounded"
+                  />
+                  <textarea
+                    value={editForm.description}
+                    onChange={(e) => setEditForm({ ...editForm, description: e.target.value })}
+                    placeholder="Description"
+                    className="w-full p-2 border rounded"
+                  />
+                  <input
+                    type="text"
+                    value={editForm.price}
+                    onChange={(e) => setEditForm({ ...editForm, price: e.target.value })}
+                    placeholder="0.00"
+                    className="w-full p-2 border rounded"
+                  />
+                  <div className="flex space-x-4">
+                    <button
+                      onClick={async () => {
+                        const apiClient = new ApiClient();
+                        try {
+                          await apiClient.updateAd(editAd._id, editForm.title, editForm.artist, editForm.genre, editForm.age, editForm.location, editForm.date, editForm.time, editForm.imageURL, editForm.description, parseFloat(editForm.price));
+                          setEditAd(null); 
+                          window.location.reload();
+                        } catch (err) {
+                          const message = err.response?.data?.message || "Update failed.";
+                          alert(message);
+                          console.error("Update failed", err.response?.data || err.message);
+                        }
+                      }}
+                      className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+                    >
+                      Save Changes
+                    </button>
+                    <button
+                      onClick={() => setEditAd(null)}
+                      className="bg-gray-400 text-white px-4 py-2 rounded hover:bg-gray-500"
+                    >
+                      Cancel
+                    </button>
+                  </div>
+                  
+                </div>
+    
         </div>
+       
+  )}
+      </div>
       )}
-    </div>
-  );
-}
+      </div>
+      )}
+      

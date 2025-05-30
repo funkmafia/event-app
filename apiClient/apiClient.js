@@ -125,8 +125,8 @@ export class ApiClient {
     return this.apiCall("delete", `${url}ads/${id}`);
   }
 
-  async updateAd(id, title, description, price) {
-    return this.apiCall("put", `${url}ads/${id}`, { title, description, price });
+  async updateAd(id, title, artist, genre, age, location, date, time, imageURL, description, price) {
+    return this.apiCall("put", `${url}ads/${id}`, {id, title, artist, genre, age, location, date, time, imageURL, description, price });
   }
    
   async register(name, email, password){
