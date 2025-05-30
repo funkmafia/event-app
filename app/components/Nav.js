@@ -10,9 +10,9 @@ const Nav = () => {
       }
   return (
     
-    <nav className="bg-blue-600 text-white py-4 px-8 flex justify-between items-center shadow-md">
-      <Link href="/" className="text-xl font-bold">
-        Project Title
+    <nav className="bg-[var(--color-mint)] text-black py-4 px-8 flex justify-between items-center shadow-md">
+      <Link href="/" className="text-3xl font-bold text-[var(--color-primary)]">
+        SoundSide
       </Link>
       <div className="space-x-8">
         <Link href="/" className="hover:underline">
@@ -27,7 +27,7 @@ const Nav = () => {
         <Link href="/user" className="hover:underline">
           Login
         </Link>
-         <button onClick={handleLogout} className="text-black bg-blue-400 rounded-md hover:bg-white">Logout</button>
+         <button onClick={handleLogout} className="text-black bg-[var(--color-bg-light)] rounded-md hover:bg-[var(--color-accent)] transition-colors">Logout</button>
       </div>
     </nav>
   );

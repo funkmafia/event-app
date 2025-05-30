@@ -22,7 +22,7 @@ h1, h2, h3 {
 }
 
 button {
-  background-color: var(--color-mint);
+  /*background-color: var(--color-mint);*/
   color: var(--color-dark);
   border: none;
   padding: 0.6rem 1.2rem;
