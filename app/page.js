@@ -15,7 +15,7 @@ export default function Home() {
           <button className="px-8 py-3 bg-blue-600 text-white rounded-full font-medium hover:bg-blue-700 transition-colors">
             Post an Ad
           </button>
-          <button className="px-8 py-3 bg-white text-gray-900 rounded-full font-medium border border-gray-200 hover:bg-gray-50 transition-colors">
+          <button className="px-8 py-3 bg-white text-gray-900 rounded-full font-medium border border-gray-200 hover:bg-gray-300 transition-colors">
             Browse Ads
           </button>
         </div>
@@ -62,7 +62,7 @@ export default function Home() {
           <p className="text-blue-100 mb-8 max-w-2xl mx-auto">
             Join thousands of users who are already posting their ads and reaching their target audience.
           </p>
-          <button className="px-8 py-3 bg-white text-blue-600 rounded-full font-medium hover:bg-gray-100 transition-colors">
+          <button className="px-8 py-3 bg-white text-blue-600 rounded-full font-medium hover:bg-gray-300 transition-colors">
             Create Your First Ad
           </button>
         </div>
