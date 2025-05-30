@@ -40,10 +40,7 @@ export default function AdsPage() {
 
     fetchAds();
   }, []);
-    const handleLogout = async () => {
-    const apiClient = new ApiClient();
-    await apiClient.logout();
-    }
+    
     const handleDelete = async (id) =>{
       const apiClient = new ApiClient();
       try{
@@ -83,7 +80,7 @@ export default function AdsPage() {
 
   return (
     <div className="max-w-7xl mx-auto p-6">
-      <button onClick={handleLogout} className="text-purple-400 rounded-md hover:bg-red-300 text-white">Logout</button>
+     
       <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-8">Browse Advertisements</h1>
       
       {ads.length === 0 ? (
@@ -147,11 +144,13 @@ export default function AdsPage() {
                   </button>
                 </form>
               </div>
-              <button onClick ={() => {
-                  setEditAd(ad);
-                  setEditForm({title: ad.title, artist: ad.artist, genre: ad.genre, age: ad.age, location: ad.location, date: ad.date, time: ad.time, description: ad.description, price: ad.price});
-                }} className='text-sm'>&#128395; Edit</button>
-                <button onClick={() => handleDelete(ad._id)}>Delete</button>
+              <div className='grid grid-cols-2 gap-3 my-2'>
+                  <button onClick ={() => {
+                      setEditAd(ad);
+                      setEditForm({title: ad.title, artist: ad.artist, genre: ad.genre, age: ad.age, location: ad.location, date: ad.date, time: ad.time, description: ad.description, price: ad.price});
+                    }} className='text-sm'>&#128395; Edit</button>
+                    <button onClick={() => handleDelete(ad._id)} className='text-sm'>&#128465; Delete</button>
+                </div>
                </div>
 
           ))}
