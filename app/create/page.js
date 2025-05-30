@@ -12,6 +12,7 @@ export default function CreateAd() {
     location: '',
     date: '',
     time: '',
+    imageURL: '',
     description: '',
     price: '',
   });
