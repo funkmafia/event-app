@@ -7,9 +7,12 @@ const Nav = () => {
       <Link href="/" className="text-xl font-bold">
         Project Title
       </Link>
-      <div className="space-x-6">
+      <div className="space-x-8">
         <Link href="/" className="hover:underline">
           Home
+        </Link>
+        <Link href="/create" className="hover:underline">
+          Create
         </Link>
         <Link href="/register" className="hover:underline">
           Register
