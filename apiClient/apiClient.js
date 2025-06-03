@@ -1,13 +1,13 @@
 import axios from "axios";
-const url = "http://localhost:3001/";
+const url = "https://event-app-liart-eta.vercel.app";
 
 export class ApiClient {
   constructor() {
     // Initialize axios with default headers
     this.axiosInstance = axios.create({
       headers: {
-        'Authorization': `Bearer ${this.getToken()}`
-      }
+        Authorization: `Bearer ${this.getToken()}`,
+      },
     });
 
     // Add request interceptor to ensure token is set for every request
@@ -15,7 +15,7 @@ export class ApiClient {
       (config) => {
         const token = this.getToken();
         if (token) {
-          config.headers['Authorization'] = `Bearer ${token}`;
+          config.headers["Authorization"] = `Bearer ${token}`;
         }
         return config;
       },
@@ -30,8 +30,8 @@ export class ApiClient {
       (error) => {
         if (error.response && error.response.status === 401) {
           this.removeToken();
-          if (typeof window !== 'undefined') {
-            window.location.href = '/unauthorized';
+          if (typeof window !== "undefined") {
+            window.location.href = "/unauthorized";
           }
         }
         return Promise.reject(error);
@@ -39,27 +39,26 @@ export class ApiClient {
     );
   }
 
-
   getToken() {
-    if (typeof window !== 'undefined') {
-      const token = localStorage.getItem('authToken');
+    if (typeof window !== "undefined") {
+      const token = localStorage.getItem("authToken");
       return token;
     }
     return null;
   }
 
   setToken(token) {
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('authToken', token);
+    if (typeof window !== "undefined") {
+      localStorage.setItem("authToken", token);
       // Update axios default headers
-      this.axiosInstance.defaults.headers['Authorization'] = `Bearer ${token}`;
+      this.axiosInstance.defaults.headers["Authorization"] = `Bearer ${token}`;
     }
   }
 
   removeToken() {
-    if (typeof window !== 'undefined') {
-      localStorage.removeItem('authToken');
-      delete this.axiosInstance.defaults.headers['Authorization'];
+    if (typeof window !== "undefined") {
+      localStorage.removeItem("authToken");
+      delete this.axiosInstance.defaults.headers["Authorization"];
     }
   }
 
@@ -77,11 +76,11 @@ export class ApiClient {
       });
       return response;
     } catch (error) {
-      console.error('API call error:', error.response || error); 
+      console.error("API call error:", error.response || error);
       if (error.response && error.response.status === 401) {
         this.removeToken();
-        if (typeof window !== 'undefined') {
-          window.location.href = '/unauthorized';
+        if (typeof window !== "undefined") {
+          window.location.href = "/unauthorized";
         }
       }
       throw error;
@@ -97,13 +96,24 @@ export class ApiClient {
     }
   }
 
-  async addAd(title, artist, genre, age, location, date, time, imageURL, description, price) {
+  async addAd(
+    title,
+    artist,
+    genre,
+    age,
+    location,
+    date,
+    time,
+    imageURL,
+    description,
+    price
+  ) {
     try {
       const numericPrice = Number(price);
       if (isNaN(numericPrice)) {
-        throw new Error('Price must be a valid number');
+        throw new Error("Price must be a valid number");
       }
-      return this.apiCall("post", url + "ads", { 
+      return this.apiCall("post", url + "ads", {
         title,
         artist,
         genre,
@@ -111,12 +121,12 @@ export class ApiClient {
         location,
         date,
         time,
-        imageURL, 
-        description, 
-        price: numericPrice, 
+        imageURL,
+        description,
+        price: numericPrice,
       });
     } catch (error) {
-      console.error('addAd error:', error.response || error); // Debug log
+      console.error("addAd error:", error.response || error); // Debug log
       throw error;
     }
   }
@@ -125,34 +135,64 @@ export class ApiClient {
     return this.apiCall("delete", `${url}ads/${id}`);
   }
 
-  async updateAd(id, title, artist, genre, age, location, date, time, imageURL, description, price) {
-    return this.apiCall("put", `${url}ads/${id}`, {id, title, artist, genre, age, location, date, time, imageURL, description, price });
+  async updateAd(
+    id,
+    title,
+    artist,
+    genre,
+    age,
+    location,
+    date,
+    time,
+    imageURL,
+    description,
+    price
+  ) {
+    return this.apiCall("put", `${url}ads/${id}`, {
+      id,
+      title,
+      artist,
+      genre,
+      age,
+      location,
+      date,
+      time,
+      imageURL,
+      description,
+      price,
+    });
   }
-   
-  async register(name, email, password){
+
+  async register(name, email, password) {
     try {
-      const response = await this.apiCall("post", url + "auth/register", { name, email, password });
+      const response = await this.apiCall("post", url + "auth/register", {
+        name,
+        email,
+        password,
+      });
       if (response.data && response.data.token) {
         this.setToken(response.data.token);
         return response;
       } else {
-        throw new Error('No token received from server');
+        throw new Error("No token received from server");
       }
     } catch (error) {
       throw error;
-    
     }
   }
 
   async login(email, password) {
     try {
-      const response = await this.apiCall("post", url + "auth/login", { email, password });
-      
+      const response = await this.apiCall("post", url + "auth/login", {
+        email,
+        password,
+      });
+
       if (response.data && response.data.token) {
         this.setToken(response.data.token);
         return response;
       } else {
-        throw new Error('No token received from server');
+        throw new Error("No token received from server");
       }
     } catch (error) {
       throw error;
@@ -163,15 +203,15 @@ export class ApiClient {
     const token = this.getToken();
     try {
       if (token) {
-        await this.apiCall('post', url + "auth/logout", {token});
+        await this.apiCall("post", url + "auth/logout", { token });
       }
-    }catch (error) {
-      console.error('Logout error:', error?.response?.data || error.message);
+    } catch (error) {
+      console.error("Logout error:", error?.response?.data || error.message);
     } finally {
-    this.removeToken();
-    if (typeof window !== 'undefined') {
-      window.location.href = '/user';
-    }
+      this.removeToken();
+      if (typeof window !== "undefined") {
+        window.location.href = "/user";
+      }
     }
   }
 }
