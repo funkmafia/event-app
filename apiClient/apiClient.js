@@ -89,7 +89,7 @@ export class ApiClient {
 
   async getAds() {
     try {
-      const response = await this.apiCall("get", url + "ads");
+      const response = await this.apiCall("get", url + "/ads");
       return response;
     } catch (error) {
       throw error;
@@ -113,7 +113,7 @@ export class ApiClient {
       if (isNaN(numericPrice)) {
         throw new Error("Price must be a valid number");
       }
-      return this.apiCall("post", url + "ads", {
+      return this.apiCall("post", url + "/ads", {
         title,
         artist,
         genre,
@@ -165,7 +165,7 @@ export class ApiClient {
 
   async register(name, email, password) {
     try {
-      const response = await this.apiCall("post", url + "auth/register", {
+      const response = await this.apiCall("post", url + "/auth/register", {
         name,
         email,
         password,
@@ -183,7 +183,7 @@ export class ApiClient {
 
   async login(email, password) {
     try {
-      const response = await this.apiCall("post", url + "auth/login", {
+      const response = await this.apiCall("post", url + "/auth/login", {
         email,
         password,
       });
@@ -203,7 +203,7 @@ export class ApiClient {
     const token = this.getToken();
     try {
       if (token) {
-        await this.apiCall("post", url + "auth/logout", { token });
+        await this.apiCall("post", url + "/auth/logout", { token });
       }
     } catch (error) {
       console.error("Logout error:", error?.response?.data || error.message);
