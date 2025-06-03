@@ -1,36 +1,59 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🎸 SoundSlice - CRUD Project
 
-## Getting Started
+Welcome to **SoundSlice**, a CRUD-based group project built to simulate a music gig advertisement platform. Users can create, view, edit, and delete event ads — providing a clean user interface and intuitive functionality.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## ✨ Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- ✅ Create new gig ads with detailed event information
+- 🖼️ Upload poster/image URLs for better presentation
+- 📝 Edit and update existing ads in-place
+- 🗑️ Delete unwanted ads with confirmation
+- 🧾 Frontend validations and feedback messages
+- 🎨 Responsive design using TailwindCSS
+- 🔐 Basic authentication checks for actions
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🧠 Tech Stack
 
-## Learn More
+| Layer    | Technology                       |
+| -------- | -------------------------------- |
+| Frontend | React (Next.js) with TailwindCSS |
+| Backend  | Node.js + Express.js             |
+| Database | MongoDB (Mongoose ODM)           |
+| Auth     | JWT (assumed basic token checks) |
+| API Comm | Axios                            |
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🧱 File Structure Highlights
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- `/app/ads/page.js` — Full CRUD operations UI (display, edit, delete)
+- `apiClient.js` — Handles communication between frontend and backend
+- `routes/` — Ad-related API endpoints
+- `controllers/` — Logic for handling DB operations
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 👥 Team Members
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+| Name  
+|------------|
+| Andrew  
+| Nicoleta  
+| MT  
+| Zak
+
+---
+
+## 📌 Notes
+
+- Built during a 1-week sprint as a CRUD learning module
+- Emphasis on collaboration, Git workflow, and full-stack coordination
+- All CRUD operations tested and reviewed in-browser
+
+---
+
+_Made with music, teamwork, and a bit of late-night debugging 🎧_
