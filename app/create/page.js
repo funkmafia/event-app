@@ -323,7 +323,7 @@ export default function CreateAd() {
           </label>
           <div className="relative">
             <span className="absolute left-4 top-2 text-gray-500 dark:text-gray-400">
-              $
+              £
             </span>
             <input
               type="text"
@@ -355,7 +355,7 @@ export default function CreateAd() {
         </button>
         {success && (
           <p className="text-green-600 text-center mt-4">
-            Ad created successfully!
+            Gig created successfully!
           </p>
         )}
       </form>
