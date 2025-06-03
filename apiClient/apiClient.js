@@ -1,5 +1,5 @@
 import axios from "axios";
-const url = "https://event-app-liart-eta.vercel.app";
+const url = "https://soundslice-api.onrender.com";
 
 export class ApiClient {
   constructor() {
